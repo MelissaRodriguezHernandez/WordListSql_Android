@@ -141,6 +141,22 @@ public class WordListOpenHelper extends SQLiteOpenHelper {
         return deleted;
     }
 
+    public Cursor search(String searchString) {
+        String[] columns = new String[]{KEY_WORD};
+        String where =  KEY_WORD + " LIKE ?";
+        searchString = "%" + searchString + "%";
+        String[] whereArgs = new String[]{searchString};
 
+        Cursor cursor = null;
+        try {
+            if (readDB == null) {
+                readDB = getReadableDatabase();
+            }
+            cursor = readDB.query(WORD_LIST_TABLE, columns, where, whereArgs, null, null, null);
+        } catch (Exception e) {
+            Log.d(TAG, "SEARCH EXCEPTION! " + e);
+        }
+        return cursor;
+    }
 
 }

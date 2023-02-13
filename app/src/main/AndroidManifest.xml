@@ -32,7 +32,7 @@ limitations under the License. -->
 
         </activity>
         <activity android:name=".EditWordActivity"></activity>
-
+        <activity android:name=".SearchActivity"></activity>
     </application>
 
 </manifest>
