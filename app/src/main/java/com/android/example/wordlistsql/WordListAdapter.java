@@ -82,13 +82,13 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
             @Override
             public void onClick(View v ) {
-                // You have to get the position like this, you can't hold a reference
-                Log.d (TAG + "onClick", "VHPos " + wordViewHolder.getAdapterPosition() + " ID " + id);
                 int deleted = wordListOpenHelperA.delete(id);
-                if (deleted >= 0)
+                if (deleted >= 0) {
+                    // Redisplay the view.
+                    //WordListAdapter.this.notifyItemRemoved(int position);
                     notifyItemRemoved(wordViewHolder.getAdapterPosition());
+                }
             }
-
         });
 
         holder.edit_button.setOnClickListener(new MyButtonOnClickListener(
